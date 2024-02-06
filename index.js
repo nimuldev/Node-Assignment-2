@@ -49,9 +49,18 @@ http.createServer(function(req,res){
         upload.single('file')(req, res, (err) => {
             if (err) {
               return res.end('Error uploading file.');
+            } else{
+                if (req.file) {
+                 
+                    res.statusCode = 200;
+                    res.end('File uploaded successfully..');
+                  } else {
+                 
+                    res.statusCode = 400;
+                    res.end('No file uploaded..');
+                  }
             }
           
-            return res.end('File uploaded successfully.');
           });
         
         
